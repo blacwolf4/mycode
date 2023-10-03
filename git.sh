@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+read name
+
 git add *
-git commit -m "While looping"
+git commit -m "$name"
 git push origin
