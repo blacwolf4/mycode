@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read name
+read -p "Name of project?: " name
 
 git add *
 git commit -m "$name"
