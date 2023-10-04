@@ -1,0 +1,7 @@
+export OS_AUTH_URL=https://mydomain.com
+export OS_IDENTITY_API_VERSION=3
+export OS_PROJECT_NAME=myonlyproject
+export OS_PROJECT_DOMAIN_NAME=mydomain
+export OS_USERNAME=local_admin
+export OS_USER_DOMAIN_NAME=mydomain
+export OS_PASSWORD=Password5
