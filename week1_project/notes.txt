@@ -1,0 +1,9 @@
+This program helps you decide where to go for dinner.
+
+List of restaurants.
+
+List of attributes for those restaurants.
+
+Ask user for what genre of food sounds good.
+
+Ask user the max distance they want to travel.
