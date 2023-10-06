@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """script to help you choose a place for dinner"""
 
-#import choice from random module
+#import modules
 import random
+import crayons
 
 #main function
 def main():
@@ -19,7 +20,7 @@ def main():
     }
 
     option=random.choice(rrs_dict[rrs])
-    print(f"I would suggest going to {option}")
+    print(f"I would suggest going to {crayons.green(option)}")
 
 if __name__ == "__main__":
 
