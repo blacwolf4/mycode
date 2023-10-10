@@ -1,0 +1,13 @@
+---
+- name: Learning to use git
+  hosts: planetexpress
+  connection: ssh
+  gather_facts: false
+
+  tasks:
+
+  - name: create a git archive
+    git:
+      repo: https://github.com/ansible/ansible-examples.git
+      dest: ~/ansible-examples/
+      archive: /tmp/ansible-examples.zip
