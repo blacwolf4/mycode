@@ -1,0 +1,17 @@
+---
+- name: Exploring line in file
+  hosts: planetexpress:!farnsworth
+
+
+  vars:
+    - fileloc: "/var/log/bootstrap.log"
+
+
+  tasks:
+    - name: insert line into {{ fileloc }}
+      lineinfile:
+        path: "{{ fileloc }}"
+        regexp: "^Setting up lib.*"
+        line: "REDACTED BY ANSIBLE lineinfile module"
+        backup: yes
+      become: true
