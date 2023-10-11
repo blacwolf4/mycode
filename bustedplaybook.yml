@@ -1,0 +1,16 @@
+---
+- name: Tuesday Challenge
+  hosts: planet express
+  connection: network_cli
+  gather_facts: yes
+
+  tasks:
+    - apt:
+        name: s1
+        state: present
+      name: using apt to install sl
+      register: result
+
+    - name: print out the variable named result
+      debug:
+        var: result.cache_update_time
