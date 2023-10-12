@@ -1,0 +1,37 @@
+---
+- name: Apache server installed
+  hosts: web
+  gather_facts: no
+  become: yes
+
+  tasks:
+
+  - name: latest Apache version installed
+    package:
+      name: apache2
+      state: latest
+
+
+  - name: Apache enabled and running
+    service:
+      name: apache2
+      enabled: yes
+      state: started
+
+  - name: copy index.html
+    copy:
+      src: ~/mycode/files/index.html
+      dest: /var/www/html
+
+  - name: download a copy of apache2.conf
+    get_url:
+      url: https://raw.githubusercontent.com/rzfeeser/alta3files/master/apache2.conf
+      dest: /etc/apache2
+    notify:
+      - restart_apache
+
+  handlers:
+  - name: restart_apache
+    service:
+      name: apache2
+      state: restarted
