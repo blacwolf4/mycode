@@ -1,0 +1,28 @@
+---
+- name: Playbook - Thursday Project    
+  hosts: thursday       # connect to hosts alpha, bravo, charlie in grouping thursday
+  connection: ssh     # default is to use the connection plugin ssh.py
+  gather_facts: yes   # default is yes
+
+  tasks:                                     # a list of what we want to do
+  - name: using apt to install figlet        # metadata
+    ansible.builtin.apt:                     # the module we want to run, apt.py
+        name: figlet                         # parameter name has the value figlet
+        state: present       # parameter state has the value present
+    become: yes              # elevate status to admin, sudo, enable, etc.
+
+  - name: Copy Thursday's file to hosts
+    ansible.builtin.copy:
+        src: ~/mycode/files/thursday.txt   # on the controller
+        dest: ~/thursday.txt      # home directory on hosts
+
+
+  - name: Get OS family 
+    debug:
+      var: ansible_facts.os_family
+
+
+  - name: write hostname using jinja2
+    ansible.builtin.template:
+      src: ~/mycode/ansible_project/thursday.j2
+      dest: ~/hostname.txt

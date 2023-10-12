@@ -1,0 +1,6 @@
+
+My name is: {{ ansible_facts['hostname'] }}
+
+My IP Address is: {{ ansible_default_ipv4['address'] }}
+
+My OS is: {{ ansible_facts['os_family'] }}
