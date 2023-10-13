@@ -6,6 +6,7 @@ from contextlib import redirect_stdout
 import requests
 import json
 import csv
+from pprint import pprint
 
 def main():
     
@@ -38,11 +39,11 @@ def main():
 	    "X-RapidAPI-Key": "863afdf1c3msh0418c841b7cb716p1ea8d6jsn31bc3d652f18",
 	    "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
     }
-    response = requests.get(url, headers=headers, params=querystring)
+    response = requests.get(url, headers=headers, params=querystring).json()
     
     with open('movies.json', 'w') as f:
         with redirect_stdout(f):
-            print('response')
+            pprint(response)
 
     #infile = open("movies.json", "r")
     #jsondata = json.loads(infile.read())
