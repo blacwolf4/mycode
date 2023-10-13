@@ -1,0 +1,42 @@
+---
+- name: Testing with TextFSM
+  hosts: localhost
+
+  vars:
+    results:
+      stdout: "{{ lookup('file', '/home/student/mycode/files/cisco_ver.txt') }}"
+
+  tasks:
+  #
+  - name: Display our results from the command "show version"
+    debug:
+      var: results.stdout
+
+  # there is data we want in that blob of text
+  - name: Mimic parsing output with TextFSM
+    set_fact:
+      ciscofacts: "{{ results.stdout | parse_cli_textfsm('/home/student/mycode/files/cisco_ver_temp.txt') }}"
+
+  - name: Show the new facts
+    debug:
+      var: ciscofacts
+
+  - name: Display the image
+    debug:
+      var: ciscofacts[0].ImageFile
+
+  - name: Display the memory
+    debug:
+      var: ciscofacts[0].Memory
+  
+  - name: Display the total uptime
+    debug:
+      var: ciscofacts[0].Uptime
+
+  - name: Display the last reload time
+    debug:
+      var: ciscofacts[0].ReloadTime
+
+  - name: Display the current version
+    debug:
+      var: ciscofacts[0].Version
