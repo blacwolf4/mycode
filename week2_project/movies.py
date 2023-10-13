@@ -14,15 +14,17 @@ def main():
         if watch_typ_in == "M":
             watch_type = "movie"
             print(f"You chose {watch_type}")
+            watch_title = input("What movie do you want to watch?\n")
             break
         elif watch_typ_in == "T":
             watch_type = "show"
             print(f"You chose {watch_type}")
+            watch_title = input("What TV show do you want to watch?\n")
             break
         else:
             print("Invalid input: Please use 'M' for movie or 'T' for TV show.")
 
-    watch_title = input("What movie do you want to watch?\n")
+#    watch_title = input("What movie do you want to watch?\n")
     search_param = [watch_type, watch_title]
 
     print(search_param)
@@ -34,11 +36,22 @@ def main():
 	    "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
     }
     response = requests.get(url, headers=headers, params=querystring)
-    movie_data = response.json()
 
-    print( type(response))
+    movie_data.write(response)
 
-    print(response[0].json())
+    # Opening JSON file
+    f = open('movie_data')
+ 
+    # returns JSON object as a dictionary
+    movie_data = json.load(f)
+ 
+    # Iterating through the json list
+    for i in movie_data['service']:
+        print(i)
+ 
+    # Closing files
+    f.close()
+    movie_data.close()
 
 if __name__ == "__main__":
     main()
