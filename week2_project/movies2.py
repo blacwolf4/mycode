@@ -44,20 +44,20 @@ def main():
         with redirect_stdout(f):
             print('response')
 
-    #infile = open("movies.json", "r")
-    #jsondata = json.loads(infile.read())
-    #outfile = open("output.csv", "w")
-    #writer = csv.writer(outfile)
-    #fields = ["asin","price"]
-    #for product in jsondata:
-    #    line = []
-    #    for f in fields:
-    #        if f in product:
-    #            line.append(product)
-    #            break 
-    #        else:
-    #            line.append("")
-    #    writer.write(line)
+    infile = open("movies.json", "r")
+    jsondata = json.loads(infile.read())
+    outfile = open("output.csv", "w")
+    writer = csv.writer(outfile)
+    fields = ["asin","price"]
+    for product in jsondata:
+        line = []
+        for f in fields:
+            if f in product:
+                line.append(product)
+                break   # I assume you need to print only once per match!?
+            else:
+                line.append("")
+        writer.write(line)
 
     # print(response.json())
 
